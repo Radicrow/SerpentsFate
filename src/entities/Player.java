@@ -4,10 +4,10 @@ package entities;
 public class Player {
 	
 private String name = "Aspheera";
-private int PV_max;
-private int PV;
-private int MP_max;
-private int MP;
+private double PV_max;
+private double PV;
+private double MP_max;
+private double MP;
 
 
 private int strength = 0;
@@ -20,7 +20,7 @@ private Weapon weapon;
 private Armor armor;
 private int potion = 3;
 
-public Player(String name, int PV_max, int PV, int MP_max, int MP, int strength, int constitution, int agility, int dexterity) {
+public Player(String name, double PV_max, double PV, double MP_max, double MP, int strength, int constitution, int agility, int dexterity) {
 	this.name = name;
 	this.PV_max = PV_max;
 	this.PV = PV;
@@ -40,6 +40,10 @@ public void setWeapon(Weapon weapon) {
 	this.weapon = weapon;
 }
 
+public Weapon getWeapon() {
+	return weapon;
+}
+
 public void setArmor(Armor armor) {
 	this.armor = armor;
 }
@@ -49,25 +53,25 @@ public int getPotion() {
 	return this.potion;
 }
 
-public void setPV(int PV) {
+public void setPV(double PV) {
 	this.PV = PV;
 }
 
-public void damage(int damage) {
+public void damage(double damage) {
 	this.PV -= damage;
 }
 
-public int getPV() {
+public double getPV() {
 	return this.PV;
 }
-public int getPV_max() {
+public double getPV_max() {
 	return this.PV_max;
 }
 
-public int getMP() {
+public double getMP() {
 	return this.MP;
 }
-public int getMP_max() {
+public double getMP_max() {
 	return this.MP_max;
 }
  

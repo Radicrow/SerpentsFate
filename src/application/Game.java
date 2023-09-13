@@ -241,8 +241,7 @@ public class Game {
 		try { Thread.sleep (5000); } catch (InterruptedException ex) {}
 
 		
-		Enemy guard = new Enemy("Guard", 30, 2, 0, 2);
-		Combat.Fight(guard, p1);
+	
 		
 		Phase1();
 	}
@@ -251,7 +250,7 @@ public class Game {
 	}
 	
 	public static void main(String[] args) {
-		
+		Random random = new Random();
 		
 		int constitution = 5;
 		Armor leather = new Armor(1.5 * constitution);
@@ -262,7 +261,8 @@ public class Game {
 		
 		
 		
-		System.out.println(w1.getDamage());
+		Enemy guard = new Enemy("Guard", 30, 1, 2, 0, 2);
+		Combat.Fight(guard, p1);
 		
 		
 		
