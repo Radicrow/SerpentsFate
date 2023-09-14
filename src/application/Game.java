@@ -229,7 +229,7 @@ public class Game {
 		    System.out.println(w1.getDamage());
 		}
 
-		Armor leather = new Armor(1.5 * constitution);
+		Armor leather = new Armor(5);
 		
 		p1.setWeapon(w1);
 		p1.setArmor(leather);
@@ -253,16 +253,16 @@ public class Game {
 		
 		Random random = new Random();
 		
-		int constitution = 5;
-		Armor leather = new Armor(1.5 * constitution);
-		Player p1 = new Player("Radi", 20, 20, 20, 20, 10, 5, 0, 0); 
+		
+		Armor leather = new Armor(5);
+		Player p1 = new Player("Radi", 20, 20, 20, 20, 0, 5, 0, 10); 
 		Weapon w1 = new Weapon("Light Weapon", 2, p1); 
 		p1.setWeapon(w1);
 		p1.setArmor(leather);
 		
 		
 		
-		Enemy guard = new Enemy("Guard", 30, 1, 2, 0, 2);
+		Enemy guard = new Enemy("Guard", 70, 2, 2, 0, 2);
 		Combat.Fight(guard, p1);
 		
 		

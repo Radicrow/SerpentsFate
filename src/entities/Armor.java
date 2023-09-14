@@ -13,4 +13,6 @@ public class Armor {
     public void setDefense(double defense) {
         this.defense = defense;
     }
+    
+    
 }

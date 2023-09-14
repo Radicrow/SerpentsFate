@@ -18,6 +18,7 @@ private int arcana = 0;
 
 private Weapon weapon;
 private Armor armor;
+private double defense;
 private int potion = 3;
 
 public Player() {
@@ -50,8 +51,12 @@ public Weapon getWeapon() {
 
 public void setArmor(Armor armor) {
 	this.armor = armor;
+	this.defense = armor.getDefense();
 }
 
+public double getDefense() {
+	return this.defense;
+}
 
 public int getPotion() {
 	return this.potion;
@@ -61,8 +66,18 @@ public void setPV(double PV) {
 	this.PV = PV;
 }
 
+public void setDefense(double defense) {
+	this.defense = defense;
+}
+
 public void damage(double damage) {
-	this.PV -= damage;
+	double ph;
+	ph = (damage - (this.defense));
+	
+	if(ph<0) {
+		ph = 0;
+	}
+	this.PV -= ph;
 }
 
 public double getPV() {

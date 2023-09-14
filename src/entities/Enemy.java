@@ -33,6 +33,10 @@ Random random = new Random();
     
     public void damage(double damage) {
     	this.PV -= damage;
+    	
+    	if (this.PV<0) {
+    		this.PV = 0;
+    	}
     }
 
     public double getDamage() {

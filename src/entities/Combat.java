@@ -39,13 +39,15 @@ public class Combat {
         case 3:
         	
         case 4:
-
+        	PlayerDefend(player);
             break;
         default:
             System.out.println("Invalid choice. Please select a valid option.");
            
             break;
     }
+		
+		
 		
 		
 	}
@@ -65,4 +67,11 @@ public class Combat {
 		player.damage(enemy.getDamage());
 	}
 	
+	
+	public static void PlayerDefend(Player player) {
+		player.setDefense(player.getDefense()*2);
+	}
+	
 }
+
+

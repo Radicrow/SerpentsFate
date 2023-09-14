@@ -5,7 +5,6 @@ public class Weapon {
 	Random random = new Random();
     private String category;
 	private double damage;
-	private double final_damage;
 	private Player player;
 
     public Weapon(String category, double damage, Player player) {
@@ -28,9 +27,9 @@ public class Weapon {
 
     public double getDamage() {
     	if ("Light Weapon".equals(category)) {
-            return this.damage + (random.nextInt(6) + 1) + (random.nextInt(6) + 1) + (random.nextInt(4) + 1) + player.getDexterity();
+            return this.damage + ((random.nextInt(6) + 1) + (random.nextInt(6) + 1) + player.getDexterity()); //media 17 para dex = 10
         } else if ("Heavy Weapon".equals(category)) {
-            return this.damage + (random.nextInt(12) + 1) + (1.5 * player.getStrength());
+            return this.damage + (random.nextInt(10) + 1) + (1.2 * player.getStrength());//media 17.5 para str = 10
         } else {
             return 0;
         }
