@@ -20,6 +20,10 @@ private Weapon weapon;
 private Armor armor;
 private int potion = 3;
 
+public Player() {
+	
+}
+
 public Player(String name, double PV_max, double PV, double MP_max, double MP, int strength, int constitution, int agility, int dexterity) {
 	this.name = name;
 	this.PV_max = PV_max;

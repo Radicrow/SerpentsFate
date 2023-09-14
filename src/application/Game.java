@@ -11,7 +11,7 @@ import entities.Magic;
 import entities.Enemy;
 
 public class Game {
-	
+	Player p1 = new Player();
 	
 	
 	public static void Intro() {
@@ -243,13 +243,14 @@ public class Game {
 		
 	
 		
-		Phase1();
+		
 	}
 	public static void Phase1() {
 		
 	}
 	
 	public static void main(String[] args) {
+		
 		Random random = new Random();
 		
 		int constitution = 5;
