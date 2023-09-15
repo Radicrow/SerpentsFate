@@ -11,7 +11,8 @@ import entities.Magic;
 import entities.Enemy;
 
 public class Game {
-	Player p1 = new Player();
+	static Player p1 = new Player();
+	  static boolean gameOver = false;
 	
 	
 	public static void Intro() {
@@ -61,7 +62,7 @@ public class Game {
 
 	        switch (choice) {
 	            case 1:
-	            	character_Creation();
+	            	GameStart();
 	                break;
 	            case 2:
 	                Tutorial();
@@ -82,7 +83,8 @@ public class Game {
 	    }
 	
 	
-	public static void character_Creation() {
+	public static void GameStart() {
+		
 		Scanner read = new Scanner(System.in);
 		Random random = new Random();
 		int strength=0;
@@ -126,6 +128,7 @@ public class Game {
 		int dialogue_choice = read.nextInt();
 		
 		int MP_max = 0;
+		String bonus = null;
 		
 		while(true) {
 		if(dialogue_choice == 1) {
@@ -135,7 +138,7 @@ public class Game {
 			    System.out.println("You recall the teachings of your elders, the wisdom passed down through generations.");
 			    System.out.println("You were known for your loyalty, your skills as a healer, and your ability to mediate conflicts among your kin.");
 			    System.out.println("Green-Scaled Ancestor: \"You were a pillar of our tribe, a keeper of our traditions...\"");
-			    constitution +=2;
+			    bonus = "Con";
 			    break;
 		}
 		else if(dialogue_choice == 2) {
@@ -146,7 +149,7 @@ public class Game {
 			    System.out.println("You think about the disagreements and tensions that led to your departure.");
 			    System.out.println("Your desire for something more, something beyond the killings and cruelties you witnessed in your tribe, everything pushed you to escape.");
 			    System.out.println("Red-Scaled Ancestor: \"You carried the weight of your choices, young one.\"");
-			    dexterity += 2;
+			    bonus = "Dex";
 			    break;
 		}
 		else if(dialogue_choice == 3) {
@@ -156,7 +159,7 @@ public class Game {
 			    System.out.println("You recall the hardships you've faced, the skills you've honed, the friends you left behind.");
 			    System.out.println("You're determined to find a new life and purpose beyond the confines of your tribe.");
 			    System.out.println("Blue-Scaled Ancestor: \"Your strength of purpose will guide you, young one.\"");
-			    agility += 2;
+			    bonus = "Agi";
 			    break;
 		}
 		else {
@@ -182,13 +185,24 @@ public class Game {
 		while (true) {
 			while (true) {
 		System.out.println("Insert the Strength value: ");
-		strength += read.nextInt();
+		strength = read.nextInt();
 		System.out.println("Insert the Dexterity value: ");
-		dexterity += read.nextInt();
+		dexterity = read.nextInt();
 		System.out.println("Insert the Constitution value: ");
-		constitution += read.nextInt();
+		constitution = read.nextInt();
 		System.out.println("Insert the Agility value: ");
-		agility += read.nextInt();
+		agility = read.nextInt();
+		
+		if ( bonus == "Con") {
+			constitution+=2;
+		}
+		else if ( bonus == "Dex") {
+			dexterity+=2;
+		}
+		else if ( bonus == "Agi") {
+			agility+=2;
+		}
+		
 		
 		if(strength + dexterity + constitution + agility == 17) {
 			break;
@@ -222,11 +236,9 @@ public class Game {
 		Player p1 = new Player(name, PV_max, PV_max, MP_max, MP_max, strength, constitution, agility, dexterity); 
 		
 		if (weapon_choice == 1) {
-		    w1 = new Weapon("Light Weapon", 2,p1);
-		    System.out.println(w1.getDamage());
+		    w1 = new Weapon("Light Weapon", 3,p1);
 		} else if (weapon_choice == 2) {
-		    w1 = new Weapon("Heavy Weapon", 5,p1);
-		    System.out.println(w1.getDamage());
+		    w1 = new Weapon("Heavy Weapon", 4,p1);
 		}
 
 		Armor leather = new Armor(5);
@@ -236,37 +248,45 @@ public class Game {
 		
 		System.out.println(p1.toString());
 		
-		read.close();
+		
 		
 		try { Thread.sleep (5000); } catch (InterruptedException ex) {}
 
 		
+		//System cls
+		
+		
 	
+		int phase_1 = random.nextInt(3)+1;
+		
+		if(phase_1 == 1) {
+			//lore
+			Enemy guard = new Enemy("Guard", 70, 2, 2, 0, 0);
+			Combat.Fight(guard, p1);
+		}
+		
+		else if(phase_1 == 2) {
+			//lore
+			Enemy rival_serpentine = new Enemy("Rival Serpentine", 100, 3, 1, 0, 5);
+			Combat.Fight(rival_serpentine, p1);
+		}
+		
+		else if(phase_1 == 3) {
+			//lore
+			Enemy mossy_monster= new Enemy("Mossy Monster", 150, 1, 3, 0, -1);
+			Combat.Fight(mossy_monster, p1);
+		}
 		
 		
 	}
-	public static void Phase1() {
-		
-	}
+
 	
 	public static void main(String[] args) {
 		
-		Random random = new Random();
-		
-		
-		Armor leather = new Armor(5);
-		Player p1 = new Player("Radi", 20, 20, 20, 20, 0, 5, 0, 10); 
-		Weapon w1 = new Weapon("Light Weapon", 2, p1); 
-		p1.setWeapon(w1);
-		p1.setArmor(leather);
-		
-		
-		
-		Enemy guard = new Enemy("Guard", 70, 2, 2, 0, 2);
-		Combat.Fight(guard, p1);
-		
-		
-		
+       
+            Menu();
+        
+
 	}
 	
 }

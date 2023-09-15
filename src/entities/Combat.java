@@ -8,12 +8,14 @@ public class Combat {
 	public static void Fight(Enemy enemy, Player player) {
 		
 		while(player.getPV()>0 && enemy.getPV()>0) {
-		if(player.getAgility()>enemy.getAgility()) {
+		if(player.getAgility()>=enemy.getAgility()) {
 			PlayerTurn(enemy, player);
 			EnemyAttack(enemy, player);
+			player.setDefense(player.getOriginalDefense());
 		}
 		else {
 			EnemyAttack(enemy, player);
+			player.setDefense(player.getOriginalDefense());
 			PlayerTurn(enemy, player);
 		
 		}
@@ -37,7 +39,7 @@ public class Combat {
             
             break;
         case 3:
-        	
+        	usePotion(player);
         case 4:
         	PlayerDefend(player);
             break;
@@ -60,17 +62,60 @@ public class Combat {
 		
 		damage = damage - enemy.getPV();
 		
-		System.out.printf("Player damage: %.2f%n", damage);
+		System.out.printf("You dealt %.2f points of damage!%n", damage);
 	}
 	
 	public static void EnemyAttack(Enemy enemy, Player player) {
+		
+		double damage = player.getPV();
+		
 		player.damage(enemy.getDamage());
+		
+		damage = damage - player.getPV();
+		
+		System.out.printf("You received %.2f points of damage!%n", damage);
 	}
 	
 	
 	public static void PlayerDefend(Player player) {
-		player.setDefense(player.getDefense()*2);
+	    if (player.getDefense() == player.getOriginalDefense()) {
+	        player.setOriginalDefense(player.getDefense());
+	        player.setDefense(player.getDefense() * 2);
+	    } else {
+	        System.out.println("You are already defending.");
+	    }
 	}
+	
+
+public static void usePotion(Player player) {
+    if (player.getPotion() > 0) {
+       
+        
+        int totalRecovery = 0;
+        Random random = new Random();
+        
+
+            int roll = (random.nextInt(6) + 1)+(random.nextInt(6) + 1)+(random.nextInt(6) + 1);
+            totalRecovery += roll;
+
+        
+
+        double newPV = player.getPV() + totalRecovery;
+        if (newPV > player.getPV_max()) {
+            newPV = player.getPV_max();
+        }
+        
+        player.setPV(newPV);
+        
+       
+        player.setPotion(player.getPotion() - 1);
+        
+        System.out.println("You drank a potion and recovered " + totalRecovery + " HP.");
+        System.out.println("Your HP is now " + player.getPV());
+    } else {
+        System.out.println("You are out of potions!");
+    }
+}
 	
 }
 

@@ -18,6 +18,7 @@ private int arcana = 0;
 
 private Weapon weapon;
 private Armor armor;
+private double originalDefense;
 private double defense;
 private int potion = 3;
 
@@ -45,6 +46,10 @@ public void setWeapon(Weapon weapon) {
 	this.weapon = weapon;
 }
 
+public void setPotion(int potion) {
+	this.potion = potion;
+}
+
 public Weapon getWeapon() {
 	return weapon;
 }
@@ -52,6 +57,7 @@ public Weapon getWeapon() {
 public void setArmor(Armor armor) {
 	this.armor = armor;
 	this.defense = armor.getDefense();
+	this.originalDefense = armor.getDefense();
 }
 
 public double getDefense() {
@@ -115,6 +121,14 @@ public int getDexterity() {
 
 public double getDamage() {
 	return weapon.getDamage();
+}
+
+public double getOriginalDefense() {
+    return originalDefense;
+}
+
+public void setOriginalDefense(double originalDefense) {
+    this.originalDefense = originalDefense;
 }
 
 @Override
