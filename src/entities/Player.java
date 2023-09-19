@@ -99,13 +99,6 @@ public double getMP() {
 public double getMP_max() {
 	return this.MP_max;
 }
- 
-
-public void condition() {
-	if (getPV()>getPV_max()) {
-		setPV(this.PV_max);
-	}
-}
 
 public int getAgility() {
 	return this.agility;

@@ -9,30 +9,58 @@ Random random = new Random();
     private double PV;
     private double damage;
     private double base_damage;
-    private int defense;
     private int agility;
+    private int potion = 3;
+    private double max_PV;
+    private int originalDefense;
+    private int defense;
   
 
 
     public Enemy(String name, double PV, double damage, double base_damage, int defense, int agility) {
         this.name = name;
         this.PV = PV;
+        this.max_PV = PV;
         this.damage = damage;
         this.base_damage = base_damage;
         this.defense = defense;
         this.agility = agility;
+        this.potion = 3;
+        
     }
 
     public String getName() {
         return name;
     }
+    
+    public void setPotion(int potion) {
+    	this.potion = potion;
+    }
+    
+    public void setPV_max(double max_PV) {
+    	this.max_PV = max_PV;
+    }
+    
+    public void setPV(double PV) {
+    	this.PV = PV;
+    }
+    
+    public double getPV_max() {
+    	return max_PV;
+    }
+    
+    public int getPotion() {
+    	return this.potion;
+    }
 
     public double getPV() {
-        return PV;
+        return this.PV;
     }
     
     public void damage(double damage) {
-    	this.PV -= damage;
+    	
+    	double dam = damage - this.defense;
+    	this.PV -= dam;
     	
     	if (this.PV<0) {
     		this.PV = 0;
@@ -46,7 +74,20 @@ Random random = new Random();
     public int getDefense() {
         return defense;
     }
+    
+    public void setDefense(int defense) {
+    	this.defense = defense;
+    }
+    
+    public double getOriginalDefense() {
+        return originalDefense;
+    }
 
+    public void setOriginalDefense(int originalDefense) {
+        this.originalDefense = originalDefense;
+    }
+
+    
     public int getAgility() {
         return agility;
     }

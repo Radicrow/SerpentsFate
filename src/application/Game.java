@@ -92,10 +92,12 @@ public class Game {
 		int constitution=0;
 		int agility=0;
 		
+		
+		
 		System.out.println("As the darkness engulfs your vision, you feel weightless, adrift in a surreal void. Whispers of distant memories begin to echo in your mind.");
 		System.out.println("\"Where am I? This place... it feels like a forgotten dream. Why... Why am I here?\"");
 		System.out.printf("As you look around, you see fragmented images of your past flashing before your eyes... The towering trees of your tribal home, %nthe flickering bonfires, and the faces of your kin.%n");
-		System.out.println("\"My tribe... the Serpentine. But... Why did I leave them?\"");
+		System.out.printf("\"My tribe... the Serpentine. But... Why did I leave them?\"%n%n");
 		
 		try { Thread.sleep (6000); } catch (InterruptedException ex) {}
 		
@@ -160,6 +162,7 @@ public class Game {
 			    System.out.println("You're determined to find a new life and purpose beyond the confines of your tribe.");
 			    System.out.println("Blue-Scaled Ancestor: \"Your strength of purpose will guide you, young one.\"");
 			    bonus = "Agi";
+			  
 			    break;
 		}
 		else {
@@ -168,9 +171,10 @@ public class Game {
 				dialogue_choice = read.nextInt();
 			}
 		}
+		 
 	}
 		
-		try { Thread.sleep (1500); } catch (InterruptedException ex) {}
+		try { Thread.sleep (10000); } catch (InterruptedException ex) {}
 		System.out.print(".");
 		try { Thread.sleep (1500); } catch (InterruptedException ex) {}
 		System.out.print(".");
@@ -228,7 +232,7 @@ public class Game {
 		Weapon w1 = null; 
 
 	
-		int PV_max = (random.nextInt(6)+1)+(random.nextInt(6)+1)+(random.nextInt(6)+1)+constitution;
+		int PV_max = ((random.nextInt(6)+1)+(random.nextInt(6)+1)+(random.nextInt(6)+1)+constitution)*2;
 		
 		
 		
@@ -260,26 +264,151 @@ public class Game {
 		int phase_1 = random.nextInt(3)+1;
 		
 		if(phase_1 == 1) {
-			//lore
+			
+			
+				System.out.println("As you continue your journey towards the town, you come across a checkpoint.");
+		        System.out.println("A heavily armored guard, with a stern expression, blocks your path.");
+		        System.out.println("Guard: Halt! Who goes there? State your business!");
+		        
+		        System.out.println("How will you respond?");
+		        System.out.println("1. Explain your peaceful intentions.");
+		        System.out.println("2. Attempt to bribe the guard.");
+		        System.out.println("3. Draw your weapon and prepare for a fight.");
+		        
+		        int choice = read.nextInt();
+
+		        switch (choice) {
+		            case 1:
+		            	 System.out.println("You calmly explain that you are a peaceful traveler on your way to the nearby town.");
+		                 System.out.println("The guard eyes you suspiciously, slowly drawing his weapon. It is clear that he doesn't trust your words");
+		                 System.out.println("Guard: So you expect me to believe a filthy serpentine has peaceful business anywhere nearby??");
+		                 System.out.println("Not on my watch!");
+		                break;
+		                
+		            case 2:
+		            	 System.out.println("You discreetly offer the guard a handful of coins in hopes of gaining passage.");
+		                 System.out.println("Guard: So you'd try to bribe an official of the Kriften kingdom?? Not on my watch!");
+		                break;
+		                
+		            case 3:
+		            	 System.out.println("You draw your weapon, ready to face the guard in combat.");
+		                 System.out.println("Guard: So, you want to fight, huh? Very well!");
+		                break;
+		                
+		            default:
+		                System.out.println("Invalid choice. Please select 1, 2, or 3.");
+		                choice = read.nextInt();
+		                break;
+		        }
+		    
 			Enemy guard = new Enemy("Guard", 70, 2, 2, 0, 0);
 			Combat.Fight(guard, p1);
 		}
 		
 		else if(phase_1 == 2) {
-			//lore
-			Enemy rival_serpentine = new Enemy("Rival Serpentine", 100, 3, 1, 0, 5);
+			
+			System.out.println("As you continue your journey, you sense a lurking presence nearby.");
+	        System.out.println("Suddenly, a rival serpentine emerges from the shadows!");
+	        
+	        System.out.printf("Rival Serpentine: You thought you could escape, traitor!%n%n");
+	        System.out.println("1. Attempt to reason with the rival, explaining your reasons for leaving the tribe.");
+	        System.out.println("2. Draw your weapon and prepare to defend yourself against the furious rival.");
+	        
+	        int choice = read.nextInt();
+	        switch (choice) {
+            case 1:
+                System.out.println("You take a deep breath, trying to calm the situation.");
+                System.out.println("You begin to explain your reasons for leaving the tribe, emphasizing your desire for a different path.");
+                System.out.println("Rival Serpentine: I won't listen to your lies!");
+                System.out.println("Despite your calm and eloquence, the rival serpentine still seems to possess a murderous intent and approaches you.");
+                break;
+                
+            case 2:
+                System.out.println("You draw your weapon, ready to defend yourself.");
+                System.out.println("Rival Serpentine: So be it, \"kin\"!");
+                System.out.println("The rival serpentine readies their own weapon, hostility filling the air.");   
+                break;
+                
+            default:
+                System.out.println("Invalid choice. The other serpentine grows impatient.");
+                System.out.println("Rival Serpentine: Enough games! Prepare to face the consequences!");
+                break;
+        }
+	
+			Enemy rival_serpentine = new Enemy("Rival Serpentine", 100, 3, 1, 3, 5);
 			Combat.Fight(rival_serpentine, p1);
 		}
 		
 		else if(phase_1 == 3) {
-			//lore
-			Enemy mossy_monster= new Enemy("Mossy Monster", 150, 1, 3, 0, -1);
+			
+			 	System.out.println("As you journey through the dense, moss-covered forest, the air is thick with an eerie silence.");
+		        System.out.println("Suddenly, the ground beneath your feet rumbles, and the trees seem to shiver in fear.");
+		        System.out.println("You sense danger lurking nearby.");
+
+		        System.out.println("You cautiously move forward, and from the shadows emerges a colossal mossy forest monster!");
+		        System.out.println("Its body is covered in thick green moss, blending perfectly with the surroundings.");
+		        System.out.printf("The monster's eyes gleam with hunger, and it lets out a menacing growl.%n%n");
+
+
+		        System.out.println("1. Stand your ground and prepare to fight.");
+		        System.out.println("2. Attempt to communicate with the monster.");
+		        
+		        int choice = read.nextInt();
+		        switch (choice) {
+	            case 1:
+	            System.out.println("You ready your weapons and engage the mossy forest monster in a fierce battle.");
+	               break;
+	                
+	            case 2:
+	            System.out.println("The mossy forest monster doesn't seem to comprehend your gestures and advances menacingly.");
+	            System.out.println("You have no choice but to fight.");
+	                break;
+	                
+	            default:
+	            	System.out.println("Invalid option! Please choose a valid one");
+	            	choice = read.nextInt();
+	                break;
+	        }
+
+			
+			Enemy mossy_monster= new Enemy("Mossy Monster", 150, 2, 2, 5, -1);
 			Combat.Fight(mossy_monster, p1);
 		}
+		
+		if(p1.getPV() <= 0) {
+			
+			GameOver();
+	}
+		
 		
 		
 	}
 
+	
+	public static void GameOver() {
+		Scanner read = new Scanner(System.in);
+		
+		//lore
+		System.out.println("Game Over!");
+		System.out.printf("Would you like to play again?%n1-YES! 2-No...%n");
+		
+		int over = read.nextInt();
+		if (over == 1) {
+		System.out.println("Yes... You'll get another chance!");
+		Menu();
+		}
+		else if(over == 2) {
+		System.out.println("I'm sure you'll find a way to stand back up again...");
+		System.out.println("In the meantime, though, thank you for playing!");
+		System.exit(0);
+		}
+		else {
+			while(over !=1 && over !=2) {
+			System.out.printf("Please insert a valid value!");
+			over = read.nextInt();
+			}
+		}
+	}
 	
 	public static void main(String[] args) {
 		
