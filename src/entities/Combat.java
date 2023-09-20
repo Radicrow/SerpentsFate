@@ -14,25 +14,55 @@ public class Combat {
 		try { Thread.sleep (1500); } catch (InterruptedException ex) {}
 		
 		while(player.getPV()>0 && enemy.getPV()>0) {
+			boolean self_1 = true;
+			boolean self_2 = true;
+			
+			if(player.getPV()<player.getPV_max()*0.25 && self_1 == true) {
+				System.out.println("Your vision starts to get blurry and your muscles feel somewhat numb...");
+				System.out.println(player.getName() +": I won't... give up...");
+				self_1 = false;
+			}
+			else if (player.getPV()<player.getPV_max()*0.5 && self_2 == true) {
+				System.out.println("You can feel some blood running down your scales... Your blood...");
+				self_2 = false;
+				}
+			
+			if(player.getPV()<player.getPV_max()*0.25) {
+				System.out.println("Your vision starts to get blurry and your muscles feel somewhat numb...");
+				System.out.println(player.getName() +": I won't... give up...");
+			}
+			else if (player.getPV()<player.getPV_max()*0.5) {
+				System.out.println("You can feel some blood running down your scales... Your blood...");
+			}
+			
 		if(player.getAgility()>=enemy.getAgility()) {
 			PlayerTurn(enemy, player);
+			
+			enemy.setDefense(enemy.getOriginalDefense());
+			
 			if (enemy.getPV()<=0) {
 				break;
 			}
 			enemyTurn(enemy, player);
+			
 			player.setDefense(player.getOriginalDefense());
 		}
 		else {
 			EnemyAttack(enemy, player);
+			
 			if (player.getPV()<=0) {
 				break;
 			}
+			
 			player.setDefense(player.getOriginalDefense());
+			
 			PlayerTurn(enemy, player);
+			
+			enemy.setDefense(enemy.getOriginalDefense());
 		
 		}
-		System.out.println("Player HP: " + player.getPV());
-		System.out.printf("Enemy HP: %.2f %n%n", enemy.getPV());
+		System.out.println(player.getName() +"'s HP: " + player.getPV());
+		System.out.printf(enemy.getName() +"'s HP: %.2f %n%n", enemy.getPV());
 	}
 	}
 	
@@ -94,6 +124,9 @@ public class Combat {
 	
 	
 	public static void PlayerDefend(Player player) {
+		try { Thread.sleep (1500); } catch (InterruptedException ex) {}
+		System.out.println("You enter a defensive stance");
+		
 	    if (player.getDefense() == player.getOriginalDefense()) {
 	        player.setOriginalDefense(player.getDefense());
 	        player.setDefense(player.getDefense() * 2);
@@ -112,6 +145,7 @@ public class Combat {
 	
 
 public static void usePotion(Player player) {
+	try { Thread.sleep (1500); } catch (InterruptedException ex) {}
     if (player.getPotion() > 0) {
        
         
@@ -197,4 +231,71 @@ if (enemy.getPotion() > 0) {
 			EnemyAttack(enemy, player);
 		}
 	}
+	public static void ValFight(Enemy enemy, Player player) {
+		System.out.println("And the ultimate combat begins!!");
+		System.out.print(".");
+		try { Thread.sleep (1500); } catch (InterruptedException ex) {}
+		System.out.print(".");
+		try { Thread.sleep (1500); } catch (InterruptedException ex) {}
+		System.out.println(".");
+		try { Thread.sleep (1500); } catch (InterruptedException ex) {}
+		
+		while(player.getPV()>0 && enemy.getPV()>0) {
+			
+			boolean self_1 = true;
+			boolean self_2 = true;
+			boolean self_3 = true;
+			boolean self_4 = true;
+			
+			if(player.getPV()<player.getPV_max()*0.25 && self_1 == true) {
+				System.out.println("Your vision starts to get blurry and your muscles feel somewhat numb...");
+				System.out.println(player.getName() +": I won't... give up...");
+				self_1 = false;
+			}
+			else if (player.getPV()<player.getPV_max()*0.5 && self_2 == true) {
+				System.out.println("You can feel some blood running down your scales... Your blood...");
+				self_2 = false;
+			}
+			
+			if(enemy.getPV()<enemy.getPV_max()*0.25 && self_3 == true ) {
+				System.out.println("VAL: ARGH! YOU'LL PAY FOR THAT, PIPSQUEAK!");
+				
+				self_3 = false;
+			}
+			else if (player.getPV()<player.getPV_max()*0.5 && self_4  == true) {
+				System.out.println("Val: Hmph... You're stronger than you look... I'll give you that");
+				self_4 = false;
+			}
+			
+		if(player.getAgility()>=enemy.getAgility()) {
+			PlayerTurn(enemy, player);
+			
+			enemy.setDefense(enemy.getOriginalDefense());
+			
+			if (enemy.getPV()<=0) {
+				break;
+			}
+			enemyTurn(enemy, player);
+			
+			player.setDefense(player.getOriginalDefense());
+		}
+		else {
+			EnemyAttack(enemy, player);
+			
+			if (player.getPV()<=0) {
+				break;
+			}
+			
+			player.setDefense(player.getOriginalDefense());
+			
+			PlayerTurn(enemy, player);
+			
+			enemy.setDefense(enemy.getOriginalDefense());
+		
+		}
+		System.out.println(player.getName() +"'s HP: " + player.getPV());
+		System.out.printf(enemy.getName() +"'s HP: %.2f %n%n", enemy.getPV());
+	}
+	}
 }
+

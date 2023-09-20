@@ -79,7 +79,7 @@ Random random = new Random();
     	this.defense = defense;
     }
     
-    public double getOriginalDefense() {
+    public int getOriginalDefense() {
         return originalDefense;
     }
 

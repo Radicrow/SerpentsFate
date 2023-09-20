@@ -42,12 +42,48 @@ public Player(String name, double PV_max, double PV, double MP_max, double MP, i
 	
 }
 
+public String getName() {
+	return this.name;
+}
+
+public int getConstitution() {
+	return constitution;
+}
+
+public void setConstitution(int constitution) {
+	this.constitution = constitution;
+}
+
+public void setStrength(int strength) {
+	this.strength = strength;
+}
+
+public void setAgility(int agility) {
+	this.agility = agility;
+}
+
+public void setDexterity(int dexterity) {
+	this.dexterity = dexterity;
+}
+
 public void setWeapon(Weapon weapon) {
 	this.weapon = weapon;
 }
 
 public void setPotion(int potion) {
 	this.potion = potion;
+}
+
+public void setPV_max(double pV_max) {
+	PV_max = pV_max;
+}
+
+public void setMP_max(double mP_max) {
+	MP_max = mP_max;
+}
+
+public void setMP(double mP) {
+	MP = mP;
 }
 
 public Weapon getWeapon() {
