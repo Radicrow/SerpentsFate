@@ -25,7 +25,6 @@ public class Game {
 	        System.out.println("*               Welcome to the                   *");
 	        System.out.println("*          world of Serpent's Fate!              *");
 	        System.out.println("*                                               *");
-	        System.out.println("*        [Fox Logo here later -Radicorvo]           *");
 	        System.out.println("*************************************************");
 		Menu();
 	}
@@ -85,6 +84,7 @@ public class Game {
 	                break;
 	            case 3:
 	            	Story();
+	            	break;
 	            case 4:
 	                System.out.println("Thank you for playing Serpent's Fate. Goodbye!");
 	                System.exit(0);
@@ -456,7 +456,7 @@ public class Game {
 	        }
 
 			
-			Enemy mossy_monster= new Enemy("Mossy Monster", 150, 2, 2, 5, -1);
+			Enemy mossy_monster= new Enemy("Mossy Monster", 150, 2, 2, 3, -1);
 			Combat.Fight(mossy_monster, p1);
 		}
 		
@@ -579,7 +579,7 @@ public class Game {
 			
 		
 		int phase_2 = random.nextInt(2)+1;
-		
+		try { Thread.sleep (6000); } catch (InterruptedException ex) {}
 		if (phase_2==1) {
 			System.out.println("As you continue your journey through the twisted forest,");
 			try { Thread.sleep (2000); } catch (InterruptedException ex) {}
@@ -595,10 +595,22 @@ public class Game {
 			try { Thread.sleep (2000); } catch (InterruptedException ex) {}
 			System.out.println(p1.getName() + ": Stand back! Whatever you are... ");
 			
-			Enemy demon = new Enemy("Demonic Creature", 160, 4, 3, 5, 3);
+			Enemy demon = new Enemy("Demonic Creature", 160, 2, 3, 5, 3);
 			Combat.Fight(demon,p1);
 		}
 		else if (phase_2 == 2) {
+			System.out.println("As you continue your journey through the twisted forest,");
+			try { Thread.sleep (2000); } catch (InterruptedException ex) {}
+			System.out.println("you hear a certain someone approaching. You can hear their heavy armor clinging as they walk.");
+			try { Thread.sleep (2000); } catch (InterruptedException ex) {}
+			System.out.println("You hold your breath, hoping to remain unseen by whatever it is... However, it clearly saw you.");
+			try { Thread.sleep (2000); } catch (InterruptedException ex) {}
+			System.out.println("Royal Guard: STEP OUT OF THE SHADOWS, VILE CREATURE! I CAN SMELL THE FOUL BLOOD THAT RUNS WITHIN YOUR VEINS");
+			try { Thread.sleep (2000); } catch (InterruptedException ex) {}
+			System.out.println("You quickly unsheathe your weapon, instinctively jumping back, startled...");
+			try { Thread.sleep (2000); } catch (InterruptedException ex) {}
+			try { Thread.sleep (2000); } catch (InterruptedException ex) {}
+			System.out.println(p1.getName() + ": Stand back! Whoever you are... ");
 			Enemy elite_guard = new Enemy("Kriften's Royal Guard", 130, 3, 3, 6, 0);
 			Combat.Fight(elite_guard,p1);
 		}
@@ -645,6 +657,33 @@ public class Game {
 			p1.setMP_max(25);
 			p1.setMP(p1.getMP_max());
 			
+			System.out.println("You also find a brand thing... What is it?");
+			System.out.println("1- Firescale Armor 2- Mythril Armor 3- Eternal Armor");
+			int armadura = read.nextInt();
+			
+			if (armadura == 1) {
+				Armor Firescale = new Armor(8);
+				p1.setArmor(Firescale);
+			}
+			
+			else if (armadura == 2) {
+				Armor Mythril = new Armor(10);
+				p1.setArmor(Mythril);
+			}
+			else if (armadura == 3) {
+				Armor Eternal = new Armor(9);
+				p1.setArmor(Eternal);
+			}
+			
+			try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+			System.out.print(".");
+			try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+			System.out.print(".");
+			try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+			System.out.println(".");
+			try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+			
+			
 			System.out.println("As you continue your journey through the dense forest,");
 			try { Thread.sleep (1000); } catch (InterruptedException ex) {}
 			System.out.println("you suddenly sense a powerful presence nearby. Standing in front of you,"); 
@@ -684,6 +723,69 @@ public class Game {
 			Enemy Val = new Enemy("Val", 250, 5,5,5,-10);
 			
 			Combat.ValFight(Val, p1);
+			
+			if(p1.getPV() <= 0) {
+				
+				GameOver();
+		}
+			
+			try { Thread.sleep (2000); } catch (InterruptedException ex) {}
+			
+			System.out.printf("%n%n%n%n");
+			System.out.println("After what it felt like an eternity battling what could only be described as a ferocious beast");
+			try { Thread.sleep (200); } catch (InterruptedException ex) {}
+			System.out.println("in the vessel of a red dragonborn, Val suddenly stops... Her entire body covered in wounds and blood!");
+			try { Thread.sleep (200); } catch (InterruptedException ex) {}
+			System.out.println("Val: It appears I was wrong about you... I can see how you fight... It's a battle of survival,");
+			System.out.printf("not of malice or violence...%n%n");
+			try { Thread.sleep (4000); } catch (InterruptedException ex) {}
+			
+			System.out.println("Val: Very well... You shall proceed. Just don't cause any trouble...");
+			try { Thread.sleep (200); } catch (InterruptedException ex) {}
+			System.out.println("Still shocked, you slowly nod your head, sheathing your weapon as she calmly does the same.");
+			try { Thread.sleep (5000); } catch (InterruptedException ex) {}
+			System.out.println("You then immediatelly start to walk away, still eyeing the dragonborn with caution and a bit of uncertainty");
+			try { Thread.sleep (200); } catch (InterruptedException ex) {}
+			System.out.println("She responds to that with a sarcastic smirk, turning around and starting to walk away as well");
+			try { Thread.sleep (200); } catch (InterruptedException ex) {}
+			System.out.println("Val: One last thing... You are... Strong. Only a few people have seen and survived my rage...");
+			try { Thread.sleep (200); } catch (InterruptedException ex) {}
+			System.out.printf("Val: Don't lose sight of what's really important and you'll be fine.%n%n");
+			try { Thread.sleep (4000); } catch (InterruptedException ex) {}
+			System.out.printf("Val: For now though... That's farewell.%n%n");
+			try { Thread.sleep (200); } catch (InterruptedException ex) {}
+			System.out.println("With that, she finally leaves... Allowing you to finally reach your destination");
+			try { Thread.sleep (200); } catch (InterruptedException ex) {}
+			System.out.println("It doesn't take long until you reach the town's outskirts, feeling a smile grow on your face");
+			try { Thread.sleep (200); } catch (InterruptedException ex) {}
+			System.out.println("As you glance at all those commoners calmly walking around and working as if they had nothing to");
+			try { Thread.sleep (200); } catch (InterruptedException ex) {}
+			System.out.println("worry about... Nothing to fear.");
+			
+			try { Thread.sleep (5000); } catch (InterruptedException ex) {}
+			System.out.println("You know this isn't the end, and that you'll probably have to fight a lot to earn your place");
+			try { Thread.sleep (200); } catch (InterruptedException ex) {}
+			System.out.println("But... today... Escaping is a victory! And it must be cherished.");
+			
+			try { Thread.sleep (4000); } catch (InterruptedException ex) {}
+			
+			System.out.println("You look in front of you, hopeful for your future, knowing that you won't have to");
+			System.out.println("partake in all those endless killings and those awful nightmares you used");
+			System.out.println("This... This is all you could've asked for...");
+			try { Thread.sleep (4000); } catch (InterruptedException ex) {}
+			
+			System.out.println(".");
+			try { Thread.sleep (300); } catch (InterruptedException ex) {}
+			System.out.println(".");
+			try { Thread.sleep (300); } catch (InterruptedException ex) {}
+			System.out.println(".");
+			try { Thread.sleep (300); } catch (InterruptedException ex) {}
+			
+			System.out.println("THANK YOU FOR PLAYING THE GAME!!");
+			try { Thread.sleep (2200); } catch (InterruptedException ex) {}
+			System.exit(0);
+			
+			
 	}
 
 	
@@ -730,7 +832,15 @@ public class Game {
 	public static void main(String[] args) {
 		
        
-            Menu();
+		Player p1 = new Player("Radi", 20, 20, 10, 10, 10, 7, 0, 0); 
+		Weapon w1 = new Weapon("Heavy Weapon", 4,p1);
+		Armor leather = new Armor(5);
+	
+	p1.setWeapon(w1);
+	p1.setArmor(leather);
+	
+	Enemy guard = new Enemy("Guard", 70, 2, 2, 5, 0);
+	Combat.Fight(guard, p1);
         
 
 	}

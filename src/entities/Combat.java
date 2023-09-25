@@ -13,9 +13,12 @@ public class Combat {
 		System.out.println(".");
 		try { Thread.sleep (1500); } catch (InterruptedException ex) {}
 		
+		
+		boolean self_1 = true;
+		boolean self_2 = true;
+		
 		while(player.getPV()>0 && enemy.getPV()>0) {
-			boolean self_1 = true;
-			boolean self_2 = true;
+		
 			
 			if(player.getPV()<player.getPV_max()*0.25 && self_1 == true) {
 				System.out.println("Your vision starts to get blurry and your muscles feel somewhat numb...");
@@ -27,28 +30,20 @@ public class Combat {
 				self_2 = false;
 				}
 			
-			if(player.getPV()<player.getPV_max()*0.25) {
-				System.out.println("Your vision starts to get blurry and your muscles feel somewhat numb...");
-				System.out.println(player.getName() +": I won't... give up...");
-			}
-			else if (player.getPV()<player.getPV_max()*0.5) {
-				System.out.println("You can feel some blood running down your scales... Your blood...");
-			}
-			
 		if(player.getAgility()>=enemy.getAgility()) {
 			PlayerTurn(enemy, player);
 			
 			enemy.setDefense(enemy.getOriginalDefense());
-			
+			System.out.println(enemy.getDefense());
 			if (enemy.getPV()<=0) {
 				break;
 			}
 			enemyTurn(enemy, player);
-			
+			System.out.println(enemy.getDefense());
 			player.setDefense(player.getOriginalDefense());
 		}
 		else {
-			EnemyAttack(enemy, player);
+			enemyTurn(enemy, player);
 			
 			if (player.getPV()<=0) {
 				break;
@@ -128,16 +123,12 @@ public class Combat {
 		System.out.println("You enter a defensive stance");
 		
 	    if (player.getDefense() == player.getOriginalDefense()) {
-	        player.setOriginalDefense(player.getDefense());
 	        player.setDefense(player.getDefense() * 2);
-	    } else {
-	        System.out.println("You are already defending.");
 	    }
 	}
 	
 	public static void EnemyDefend(Enemy enemy) {
 	    if (enemy.getDefense() == enemy.getOriginalDefense()) {
-	        enemy.setOriginalDefense(enemy.getDefense());
 	        enemy.setDefense(enemy.getDefense() * 2);
 	    }
 	}
@@ -207,7 +198,7 @@ if (enemy.getPotion() > 0) {
 	public static void enemyTurn(Enemy enemy, Player player) {
 		Random random = new Random();
 		System.out.println("It's " + enemy.getName()+"'s turn!");
-		int choice = random.nextInt(3) + 1;
+		int choice = random.nextInt(3)+1;
 		try { Thread.sleep (1500); } catch (InterruptedException ex) {}
 		
 		if (choice == 1) {
@@ -231,6 +222,56 @@ if (enemy.getPotion() > 0) {
 			EnemyAttack(enemy, player);
 		}
 	}
+	
+	public static void valTurn(Enemy enemy, Player player) {
+		Random random = new Random();
+		System.out.println("It's " + enemy.getName()+"'s turn!");
+		int choice = random.nextInt(6)+1;
+		try { Thread.sleep (1500); } catch (InterruptedException ex) {}
+		
+		if (choice == 1||choice == 2||choice == 3) {
+			System.out.println(enemy.getName()+" attacks!");
+			try { Thread.sleep (1500); } catch (InterruptedException ex) {}
+			EnemyAttack(enemy, player);
+		}
+		else if(choice == 4) {
+			System.out.println(enemy.getName()+" defends!");
+			try { Thread.sleep (1500); } catch (InterruptedException ex) {}
+			EnemyDefend(enemy);
+		}
+		else if(choice == 5 && enemy.getPotion()>0) {
+			System.out.println(enemy.getName()+" uses a potion!");
+			try { Thread.sleep (1500); } catch (InterruptedException ex) {}
+			usePotion(enemy);
+		}
+		else {
+			System.out.println("It's " + enemy.getName()+"'s turn!");
+			try { Thread.sleep (1500); } catch (InterruptedException ex) {}
+			ValFire(enemy, player);
+		}
+	}
+	
+	
+	public static void ValFire(Enemy enemy, Player player) {
+		
+		Random random = new Random();
+		
+		System.out.println("Val leans back and suddenly spits fire towards you");
+		
+		double damage = player.getPV();
+		
+		if (player.getOriginalDefense() == 8) {
+		player.damage(random.nextInt(6)+1+random.nextInt(6)+1);
+		}
+		
+		else {
+			player.damage(random.nextInt(6)+1+random.nextInt(6)+1+random.nextInt(6)+1);
+		}
+		damage = damage - player.getPV();
+		
+		System.out.printf("You received %.2f points of fire damage!%n", damage);
+	}
+	
 	public static void ValFight(Enemy enemy, Player player) {
 		System.out.println("And the ultimate combat begins!!");
 		System.out.print(".");
@@ -239,14 +280,14 @@ if (enemy.getPotion() > 0) {
 		try { Thread.sleep (1500); } catch (InterruptedException ex) {}
 		System.out.println(".");
 		try { Thread.sleep (1500); } catch (InterruptedException ex) {}
+		boolean self_1 = true;
+		boolean self_2 = true;
+		boolean self_3 = true;
+		boolean self_4 = true;
 		
 		while(player.getPV()>0 && enemy.getPV()>0) {
 			
-			boolean self_1 = true;
-			boolean self_2 = true;
-			boolean self_3 = true;
-			boolean self_4 = true;
-			
+		
 			if(player.getPV()<player.getPV_max()*0.25 && self_1 == true) {
 				System.out.println("Your vision starts to get blurry and your muscles feel somewhat numb...");
 				System.out.println(player.getName() +": I won't... give up...");
@@ -275,12 +316,12 @@ if (enemy.getPotion() > 0) {
 			if (enemy.getPV()<=0) {
 				break;
 			}
-			enemyTurn(enemy, player);
+			valTurn(enemy, player);
 			
 			player.setDefense(player.getOriginalDefense());
 		}
 		else {
-			EnemyAttack(enemy, player);
+			valTurn(enemy, player);
 			
 			if (player.getPV()<=0) {
 				break;

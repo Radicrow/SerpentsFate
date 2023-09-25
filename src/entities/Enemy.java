@@ -17,13 +17,13 @@ Random random = new Random();
   
 
 
-    public Enemy(String name, double PV, double damage, double base_damage, int defense, int agility) {
+    public Enemy(String name, double PV, double damage, double base_damage, int originalDefense, int agility) {
         this.name = name;
         this.PV = PV;
         this.max_PV = PV;
         this.damage = damage;
         this.base_damage = base_damage;
-        this.defense = defense;
+        this.originalDefense = originalDefense;
         this.agility = agility;
         this.potion = 3;
         
