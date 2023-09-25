@@ -373,7 +373,7 @@ public class Game {
 			try { Thread.sleep (2000); } catch (InterruptedException ex) {}
 			System.out.println("a sinister presence hangs heavy in the air. Suddenly, a grotesque figure emerges from the shadows.");
 			try { Thread.sleep (2000); } catch (InterruptedException ex) {}
-			System.out.println(" It's a corrupt demonic creature, its form a twisted amalgamation of flesh and darkness.");
+			System.out.println("It's a corrupt demonic creature, its form a twisted amalgamation of flesh and darkness.");
 			try { Thread.sleep (2000); } catch (InterruptedException ex) {}
 			System.out.println("Its bloodshot eyes fixate on you with malevolent intent, and its jagged claws drip with a sickly, greenish ooze.");
 			try { Thread.sleep (2000); } catch (InterruptedException ex) {}
@@ -411,6 +411,7 @@ public class Game {
 		
 		System.out.printf("YOU WON!%n%n");
 		try { Thread.sleep (2000); } catch (InterruptedException ex) {}
+		Phase3(p1);
 	}
 	
 	public static void Phase3(Player p1) {

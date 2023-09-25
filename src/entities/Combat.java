@@ -191,7 +191,7 @@ if (enemy.getPotion() > 0) {
         enemy.setPotion(enemy.getPotion() - 1);
         
         System.out.println(enemy.getName()+" drank a potion and recovered " + totalRecovery + " HP.");
-        System.out.printf(enemy.getName()+"'s HP is now %.2f", enemy.getPV());
+        System.out.printf(enemy.getName()+"'s HP is now %.2f %n", enemy.getPV());
 }
 }
 
