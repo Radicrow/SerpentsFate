@@ -832,15 +832,7 @@ public class Game {
 	public static void main(String[] args) {
 		
        
-		Player p1 = new Player("Radi", 20, 20, 10, 10, 10, 7, 0, 0); 
-		Weapon w1 = new Weapon("Heavy Weapon", 4,p1);
-		Armor leather = new Armor(5);
-	
-	p1.setWeapon(w1);
-	p1.setArmor(leather);
-	
-	Enemy guard = new Enemy("Guard", 70, 2, 2, 5, 0);
-	Combat.Fight(guard, p1);
+		Intro();
         
 
 	}

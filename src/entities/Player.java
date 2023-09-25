@@ -1,9 +1,10 @@
 package entities;
+import java.util.Random;
 
 
 public class Player {
 	
-private String name = "Aspheera";
+private String name;
 private double PV_max;
 private double PV;
 private double MP_max;
@@ -14,7 +15,8 @@ private int strength = 0;
 private int constitution = 0;
 private int agility = 0;
 private int dexterity = 0;
-private int arcana = 0;
+private int arcana = 2;
+private double spell_damage;
 
 private Weapon weapon;
 private Armor armor;
@@ -38,9 +40,27 @@ public Player(String name, double PV_max, double PV, double MP_max, double MP, i
 	this.constitution = constitution;
 	this.agility = agility;
 	this.dexterity = dexterity;
+	
+
+	
+	
+
 
 	
 }
+
+
+public double getSpell_damage(Magic magic) {
+	Random random = new Random();
+	double dice = magic.getDamage() + this.arcana;
+	double damage = 0;
+	
+	for(int i = 0; i<=dice;i++) {
+		damage += random.nextInt(6)+1;
+	}
+	return damage;
+}
+
 
 public String getName() {
 	return this.name;
@@ -164,5 +184,6 @@ public void setOriginalDefense(double originalDefense) {
 public String toString() {
 	return "Name: " + name + "\n" + "PV: " + PV_max + "\n"+ "MP: " + MP_max + "\n"+ "Str: " + strength + "\n" + "Con: " + constitution + "\n"+ "Agi: " + agility + "\n" + "Dex: " + dexterity + "\n"; 
 }
+
 
 }

@@ -34,12 +34,10 @@ public class Combat {
 			PlayerTurn(enemy, player);
 			
 			enemy.setDefense(enemy.getOriginalDefense());
-			System.out.println(enemy.getDefense());
 			if (enemy.getPV()<=0) {
 				break;
 			}
 			enemyTurn(enemy, player);
-			System.out.println(enemy.getDefense());
 			player.setDefense(player.getOriginalDefense());
 		}
 		else {
@@ -56,8 +54,10 @@ public class Combat {
 			enemy.setDefense(enemy.getOriginalDefense());
 		
 		}
+		System.out.println("");
 		System.out.println(player.getName() +"'s HP: " + player.getPV());
-		System.out.printf(enemy.getName() +"'s HP: %.2f %n%n", enemy.getPV());
+		System.out.println(player.getName() +"'s MP: " + player.getMP());
+		System.out.printf("%n" + enemy.getName() +"'s HP: %.2f %n%n", enemy.getPV());
 	}
 	}
 	
@@ -74,10 +74,11 @@ public class Combat {
         	PlayerAttack(enemy, player);
             break;
         case 2:
-            
+            playerCast(enemy, player);
             break;
         case 3:
         	usePotion(player);
+        	break;
         case 4:
         	PlayerDefend(player);
             break;
@@ -337,6 +338,96 @@ if (enemy.getPotion() > 0) {
 		System.out.println(player.getName() +"'s HP: " + player.getPV());
 		System.out.printf(enemy.getName() +"'s HP: %.2f %n%n", enemy.getPV());
 	}
+	}
+	
+	public static void playerCast(Enemy enemy, Player player) {
+		Scanner read = new Scanner(System.in);
+		
+		
+		
+		Magic Firaga = new Magic("Firaga", "Fire", 2, 5);
+		Magic Thundaga = new Magic("Thundaga", "Lightning", 1, 3);
+		Magic Blizzaga = new Magic("Blizzaga", "Ice", 3, 6);
+		
+		System.out.println("Which spell would you like to cast?");
+		System.out.println("1- (Cost: 5) Firaga (Cost: 3) 2- Thundaga (Cost: 6) 3- Blizzaga");
+		
+		int choice = read.nextInt();
+		double damage;
+		switch (choice) {
+		case 1:
+			if(player.getMP()<Firaga.getMP_cost()) {
+				System.out.println("You don't have enough mana to cast that spell...");
+				try { Thread.sleep (1500); } catch (InterruptedException ex) {}
+				break;
+			}
+			damage = enemy.getPV();
+			
+			if (enemy.getName() == "Mossy Monster") {
+			enemy.damage(player.getSpell_damage(Firaga) * 3);
+			System.out.println("The enemy is extra weak against fire!");
+			}
+			else if(enemy.getName() == "Val") {
+				System.out.println("The enemy is extra strong against fire!");
+				enemy.damage(player.getSpell_damage(Firaga)/4);
+			}
+			else {
+			enemy.damage(player.getSpell_damage(Firaga));
+			}
+			damage = damage - enemy.getPV();
+			System.out.println("You dealt: " + damage + " points of damage");
+			player.setMP(player.getMP() - Firaga.getMP_cost());
+			break;
+		case 2:
+			if(player.getMP()<Thundaga.getMP_cost()) {
+				System.out.println("You don't have enough mana to cast that spell...");
+				try { Thread.sleep (1500); } catch (InterruptedException ex) {}
+				break;
+			}
+			damage = enemy.getPV();
+			
+			if (enemy.getName() == "Guard" ||enemy.getName() == "Royal Guard") {
+			System.out.println("The enemy is weak against lightning!");
+			try { Thread.sleep (1500); } catch (InterruptedException ex) {}
+			enemy.damage(player.getSpell_damage(Thundaga) * 2);
+			}
+			else if(enemy.getName() == "Mossy Monster") {
+				System.out.println("The enemy is strong against lightning!");
+				try { Thread.sleep (1500); } catch (InterruptedException ex) {}
+				enemy.damage(player.getSpell_damage(Thundaga)/3);
+			}
+			else {
+			enemy.damage(player.getSpell_damage(Thundaga));
+			}
+			damage = damage - enemy.getPV();
+			System.out.println("You dealt: " + damage + " points of damage");
+			player.setMP(player.getMP() - Thundaga.getMP_cost());
+			break;
+			
+		case 3:
+			if(player.getMP()<Blizzaga.getMP_cost()) {
+				System.out.println("You don't have enough mana to cast that spell...");
+				try { Thread.sleep (1500); } catch (InterruptedException ex) {}
+				break;
+			}
+			damage = enemy.getPV();
+			
+			if (enemy.getName() == "Rival Serpentine") {
+			enemy.damage(player.getSpell_damage(Blizzaga) * 1.5);
+			System.out.println("The enemy is somewhat weak against ice!");
+			}
+			else {
+			enemy.damage(player.getSpell_damage(Blizzaga));
+			}
+			damage = damage - enemy.getPV();
+			System.out.println("You dealt: " + damage + " points of damage");
+			player.setMP(player.getMP() - Blizzaga.getMP_cost());
+			break;
+		default:
+			System.out.println("Please choose a valid option");
+			choice = read.nextInt();
+			break;
+		}
 	}
 }
 
