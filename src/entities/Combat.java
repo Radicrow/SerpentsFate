@@ -191,7 +191,7 @@ if (enemy.getPotion() > 0) {
         enemy.setPotion(enemy.getPotion() - 1);
         
         System.out.println(enemy.getName()+" drank a potion and recovered " + totalRecovery + " HP.");
-        System.out.println(enemy.getName()+"'s HP is now " + enemy.getPV());
+        System.out.printf(enemy.getName()+"'s HP is now %.2f", enemy.getPV());
 }
 }
 
@@ -266,7 +266,7 @@ if (enemy.getPotion() > 0) {
 		}
 		
 		else {
-			player.damage(random.nextInt(6)+1+random.nextInt(6)+1+random.nextInt(6)+1);
+			player.damage(random.nextInt(6)+1+random.nextInt(6)+1+random.nextInt(6)+1+random.nextInt(6)+1);
 		}
 		damage = damage - player.getPV();
 		
@@ -345,8 +345,8 @@ if (enemy.getPotion() > 0) {
 		
 		
 		
-		Magic Firaga = new Magic("Firaga", "Fire", 2, 5);
-		Magic Thundaga = new Magic("Thundaga", "Lightning", 1, 3);
+		Magic Firaga = new Magic("Firaga", "Fire", 3, 5);
+		Magic Thundaga = new Magic("Thundaga", "Lightning", 2, 3);
 		Magic Blizzaga = new Magic("Blizzaga", "Ice", 3, 6);
 		
 		System.out.println("Which spell would you like to cast?");
@@ -386,10 +386,10 @@ if (enemy.getPotion() > 0) {
 			}
 			damage = enemy.getPV();
 			
-			if (enemy.getName() == "Guard" ||enemy.getName() == "Royal Guard") {
+			if (enemy.getName() == "Guard" ||enemy.getName() == "Kriften's Royal Guard") {
 			System.out.println("The enemy is weak against lightning!");
 			try { Thread.sleep (1500); } catch (InterruptedException ex) {}
-			enemy.damage(player.getSpell_damage(Thundaga) * 2);
+			enemy.damage(player.getSpell_damage(Thundaga) * 3);
 			}
 			else if(enemy.getName() == "Mossy Monster") {
 				System.out.println("The enemy is strong against lightning!");
