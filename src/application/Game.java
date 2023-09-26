@@ -12,6 +12,19 @@ import entities.Enemy;
 
 public class Game {
 	
+	private static void slowPrint(String text) {
+        int delay = 10;
+
+        for (char c : text.toCharArray()) {
+            System.out.print(c);
+            try {
+                Thread.sleep(delay);
+            } catch (InterruptedException e) {
+            }
+        }
+        System.out.println();
+    }
+	
 	public static void Intro() {
 		  System.out.println("*************************************************");
 	        System.out.println("*               Serpent's Fate                  *");
@@ -47,7 +60,41 @@ public class Game {
         }
 	
 	public static void Story() {
-		System.out.println();
+		System.out.println("");
+		System.out.println("");
+		slowPrint("In a distant realm shrouded in ancient mysteries, serpentfolk thrived in tribes deeply rooted in traditions");
+		slowPrint("that often embraced violence and cruelty. You are one of these serpentfolk, born into a tribe where customs");
+		slowPrint("and practices revolved around aggression and brutality.");
+		slowPrint("But you were different.");
+		slowPrint("From a young age, you questioned the harsh ways of your tribe, yearning for a life of peace and harmony.");
+		slowPrint("As you grew, your distaste for the violent customs of your people only intensified.");
+		slowPrint("It became clear that you could not continue down this path, bound by traditions that went against your very nature.");
+		
+		System.out.println("");
+		slowPrint("And so, you made a difficult choice. Fueled by a burning desire for a better life, you decided to flee your tribe,");
+		slowPrint("leaving behind the familiar but oppressive world you had known. Your journey was fraught with challenges and dangers,");
+		slowPrint("but you pressed on, determined to reach a nearby town where you hoped to find refuge and a chance at a different");
+		slowPrint("kind of existence.");
+		slowPrint("Your departure was not without its consequences. The tribe you left behind likely sees you as a traitor,");
+		slowPrint("and they may send hunters or warriors to track you down and bring you back.");
+		slowPrint("Yet, you remain resolute in your quest for a better life, believing that there must be a place where");
+		slowPrint("serpentfolk like you can live in peace and find acceptance.");
+		try { Thread.sleep (2000); } catch (InterruptedException ex) {}
+		
+		
+		Scanner read = new Scanner(System.in);
+		System.out.println("Press 0 to return");
+        
+        int choice = read.nextInt();
+        
+        if(choice == 0) {
+        	Menu();
+        }
+        else {
+        	while (choice!=0){
+        	choice = read.nextInt();
+        }
+        }
 	}
 	
 	public static void Phase1(Player p1) {

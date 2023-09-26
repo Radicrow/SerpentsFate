@@ -412,10 +412,14 @@ if (enemy.getPotion() > 0) {
 			}
 			damage = enemy.getPV();
 			
-			if (enemy.getName() == "Rival Serpentine") {
-			enemy.damage(player.getSpell_damage(Blizzaga) * 1.5);
-			System.out.println("The enemy is somewhat weak against ice!");
-			}
+				if (enemy.getName() == "Demonic Creature") {
+				enemy.damage(player.getSpell_damage(Blizzaga) * 2.5);
+				System.out.println("The enemy is really weak against ice!");
+				}
+			else if (enemy.getName() == "Rival Serpentine") {
+				enemy.damage(player.getSpell_damage(Blizzaga) * 1.5);
+				System.out.println("The enemy is somewhat weak against ice!");
+				}
 			else {
 			enemy.damage(player.getSpell_damage(Blizzaga));
 			}
