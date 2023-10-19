@@ -5,15 +5,15 @@ import java.util.Random;
 public class Enemy {
 Random random = new Random();
 	
-    private String name;
-    private double PV;
-    private double damage;
-    private double base_damage;
-    private int agility;
-    private int potion = 3;
-    private double max_PV;
-    private int originalDefense;
-    private int defense;
+    private String name;//armazena o nome do inimigo
+    private double PV;//representa os pontos de vida ATUAL do inimigo
+    private double damage;// indica o dano que o inimigo pode causar
+    private double base_damage;// representa o dano base, adicionado ao dano calculado aleatoriamente
+    private int agility;//a agilidade que influencia na ordem dos turnos
+    private int potion = 3; //registro do numero de poções 
+    private double max_PV;// armazena o valor máximo de pontos de vida
+    private int originalDefense;// mantém o valor ORIGINAL da defesa
+    private int defense;// controla o valor ATUAL da defesa
   
 
 
@@ -27,8 +27,9 @@ Random random = new Random();
         this.agility = agility;
         this.potion = 3;
         
-    }
-
+    } //construtor
+    
+    //get retorna e set define -> valor/ quantidade/ numero
     public String getName() {
         return name;
     }
@@ -57,7 +58,7 @@ Random random = new Random();
         return this.PV;
     }
     
-    public void damage(double damage) {
+    public void damage(double damage) { //método que calcula o dano q o inimigo recebe em função de sua defesa
     	
     	double dam = damage - this.defense;
     	this.PV -= dam;
@@ -67,7 +68,7 @@ Random random = new Random();
     	}
     }
 
-    public double getDamage() {
+    public double getDamage() { //calculo do dano que o inimigo pode causar aleatoriamente
         return damage*(random.nextInt(4) + 1) + base_damage;
     }
 
@@ -93,3 +94,5 @@ Random random = new Random();
     }
 
 }
+
+//dano dele é diferente

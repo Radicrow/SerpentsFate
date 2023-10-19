@@ -32,7 +32,7 @@ public class Weapon {
             return this.damage + (random.nextInt(10) + 1) + (1.2 * player.getStrength());//media 17.5 para str = 10
         } else {
             return 0;
-        }
+        }//metodo que calcula seu dano com base na categoria e nos atributos do jogador e permite que o dano da arma seja ajustado conforme necessário.
 
     }
     
